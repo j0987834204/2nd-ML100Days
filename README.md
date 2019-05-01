@@ -4,7 +4,7 @@
 
 #### [Part I] 資料清理數據前處理 `Day1 to Day16`
 
-* 第十六天為總整理，對於檢查<mark style="background-color: lightblue">資料型態</mark>與<mark style="background-color: lightblue">尋找遺失值</mark>的方法更為了解。除了練習python語法外，最重要的還是了解資料想解決的問題及相關領域背景，如何用有限的資料發揮最大效益。
+* 第十六天為總整理，對於檢查`資料型態`與`尋找遺失值`的方法更為了解。除了練習python語法外，最重要的還是了解資料想解決的問題及相關領域背景，如何用有限的資料發揮最大效益。
 
 * EDA（Exploratory Data Analysis）探索式資料分析與敘述統計做差不多的事，只是換了更炫砲的名字。
 
