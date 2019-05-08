@@ -75,5 +75,9 @@
 | 標籤編碼Label Encoding   | 無           | ⼩                | 樹狀模型   |
 | 獨熱編碼One Hot Encoding | 有           | 較⼤              | 非樹狀模型 |
 
+* 均值編碼（Mean Encoding）：類別特徵與目標明顯相關時可使用
+
+  使用目標值的平均值，取代原本的類別型特徵，但較容易過度配適（overfitting），須利用平滑化修正
+
   
 
