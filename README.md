@@ -93,3 +93,24 @@
 
 * 嵌入式編碼（Embedding）
 
+##### 時間型
+
+* 加入第幾周、星期幾
+
+* 週期循環特徵（首尾相接）
+
+  年（春、夏、秋、冬、溫度相關）
+
+  月（薪水、繳費相關）
+
+  周（與周休、消費習慣相關）
+
+  日（日夜、生活作息相關）
+
+  ![1557713731308](C:\Users\lee\AppData\Roaming\Typora\typora-user-images\1557713731308.png)
+
+  [python時間處理](<http://www.wklken.me/posts/2015/03/03/python-base-datetime.html>)、[時間型態](<https://docs.python.org/3/library/datetime.html>)
+
+  
+
+  
