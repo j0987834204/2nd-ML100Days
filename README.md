@@ -1,3 +1,5 @@
+
+
 # 2nd-ML100Days
 
 － 從基礎重新訓練自己，填補不足、穩固基底。
@@ -113,4 +115,118 @@
 
   
 
+##### [特徵組合](<https://segmentfault.com/a/1190000014799038>)（特徵交叉, Feature Crosses）
+
+數值與數值組合 e.g. 經緯度計算距離(點跟點距離 / 加上地球弧度)
+
+類別與數值組合
+
+常見的有 mean, median, mode, max, min, count 等
+
+* 群聚編碼（Group by Encoding）
+
+  |                         | ⼤⼩有無意義 | 群聚編碼       |
+  | ----------------------- | ------------ | -------------- |
+  | 平均對象                | 目標值       | 其他數值型特徵 |
+  | 過度配適（Overfitting） | 容易         | 不容易         |
+  | 對均值平滑（Smoothing） | 需要         | 不需要         |
+
+[Machine Learning Course](<https://developers.google.cn/machine-learning/crash-course/ml-intro>)
+
+##### [特徵選擇](<https://zhuanlan.zhihu.com/p/32749489>)（[Feature Selection](<https://machine-learning-python.kspax.io/intro-1#li-liu-univariate-feature-selection>)）
+
+* 過濾法（Filter）：選定統計數值與設定門檻，刪除低於門檻的特徵
+
+  1. 皮爾森相關係數（Pearson Correlation）
+
+     缺點：對`非線性`特徵狀態，則無法看出關係
+
+  2. 互信息和最大信息係數（MIC, Mutual information and maximal information coefficient）
+
+     互信息公式：
+     $$
+     \begin{align*}
+     MI(x_i,y) &= KL(p(x_i,y) || p(x_i)p(y))\\
+     &= \sum_{x_i ∈｛0,1｝}\sum_{y ∈｛0,1｝}p(x_i,y)log\frac{p(x_i,y)}{p(x_i)p(y)}
+     \end{align*}
+     $$
+     `互信息`直接用於特徵選擇不太方便：
+
+     * 它不屬於度量方式，也沒有辦法歸一化，在不同數據及上的結果無法做比較
+
+     * 對於連續變量的計算不是很方便（X 和Y都是集合，$x_i$，y都是離散的取值），通常變量需要先離散化，而互信息的結果對離散化的方式很敏感。
+
+     `最大信息係數`克服了這兩個問題。首先尋找一種最優的離散化方式，然後把互信息取值轉換成一種度量方式，取值區間在 [0,1] 。
+
+     ```python
+     from minepy import MINE
+     
+     m = MINE()
+     x = np.random.uniform(-1, 1, 10000)
+     m.compute_score(x, x**2)
+     print(m.mic())
+     ```
+
+  3. 距離相關係數（Distance correlation）
+
+     距離相關係數是為了克服Pearson相關係數的弱點而生。在x和$x^2$這個例子中，即便Pearson相關係數是0，也不能斷定這兩個變量是獨立的（可能是非線性相關）；但如果距離相關係數是0，則這兩個變量是獨立的。
+
+  4. 方差選擇法
+
+     這種方法先要計算各個特徵的方差，然後根據閾值，選擇方差大於閾值的特徵。
+
+     e.g. 假設我們有一個布林值的數據集，並且我們要刪除超過80％的樣本中的一個或零（開或關）的所有特徵。布林值是伯努利隨機變量，這些變量的方差由下式給出：$Var[X]=p(1-p)$
+
+     [VarianceThreshold](<https://scikit-learn.org/stable/modules/generated/sklearn.feature_selection.VarianceThreshold.html#sklearn.feature_selection.VarianceThreshold>)是特徵選擇的簡單基線方法。刪除方差不符合某個閾值的所有特徵。默認情況下，它會刪除所有零差異特徵，即所有樣本中具有相同值的特徵。
+
+     ```python
+     from sklearn.feature_selection import VarianceThreshold
+     X = [[0, 0, 1], [0, 1, 0], [1, 0, 0], [0, 1, 1], [0, 1, 0], [0, 1, 1]]
+     sel = VarianceThreshold(threshold=(.8 * (1 - .8)))
+     print(sel.fit_transform(X))
+     ```
+
+     ```
+     array([[0, 1],
+            [1, 0],
+            [0, 0],
+            [1, 1],
+            [1, 0],
+            [1, 1]]) 
+     ```
+
+* 包裝法 （Wrapper）：根據目標函數，逐步加入特徵或刪除特徵
+
+  1. 向前選取法
+
+  2. 向後選取法
+
+  3. 遞歸特徵消除法
+     遞歸消除特徵法使用一個模型來進行多輪訓練，每輪訓練後消除若干權值係數的特徵，再用新的特徵集進行下一輪訓練。
+
+     ```python
+     from sklearn.feature_selection import RFE
+     from sklearn.linear_model import LogisticRegression
+     
+     #遞歸特徵消除法，返回特徵選擇後的數據
+     #参数estimator為模型
+     #参数n_features_to_select為選擇特徵個數
+     RFE(estimator=LogisticRegression(), n_features_to_select=2).fit_transform(iris.data, iris.target)
+     ```
+
+     
+
+* 嵌入法（Embedded）：使用機器學習模型，根據擬合後的係數，刪除係數低於門檻的特徵
+
+  L1（[Lasso](<https://cosx.org/2011/12/stories-about-statistical-learning/>)）嵌入法
+
+  [Lasso Regression](<https://blog.csdn.net/daunxx/article/details/51596877>)
+
+  GDBT（梯度提升樹）嵌入法
+
   
+
+  
+
+  
+    
