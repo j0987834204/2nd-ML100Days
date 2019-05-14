@@ -144,6 +144,7 @@
   2. 互信息和最大信息係數（MIC, Mutual information and maximal information coefficient）
 
      互信息公式：
+     <script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=default"></script>
      $$
      \begin{align*}
      MI(x_i,y) &= KL(p(x_i,y) || p(x_i)p(y))\\
