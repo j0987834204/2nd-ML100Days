@@ -135,6 +135,8 @@
 
 ##### [特徵選擇](<https://zhuanlan.zhihu.com/p/32749489>)（[Feature Selection](<https://machine-learning-python.kspax.io/intro-1#li-liu-univariate-feature-selection>)）
 
+​	[特徵選擇算法流程、分類、優化與發展綜述](<https://juejin.im/post/5a1f7903f265da431c70144c>)
+
 * 過濾法（Filter）：選定統計數值與設定門檻，刪除低於門檻的特徵
 
   1. 皮爾森相關係數（Pearson Correlation）
@@ -218,15 +220,40 @@
 
 * 嵌入法（Embedded）：使用機器學習模型，根據擬合後的係數，刪除係數低於門檻的特徵
 
-  L1（[Lasso](<https://cosx.org/2011/12/stories-about-statistical-learning/>)）嵌入法
+  1. L1（[Lasso](<https://cosx.org/2011/12/stories-about-statistical-learning/>)）嵌入
 
-  [Lasso Regression](<https://blog.csdn.net/daunxx/article/details/51596877>)
+     [Lasso Regression](<https://blog.csdn.net/daunxx/article/details/51596877>)
 
-  GDBT（梯度提升樹）嵌入法
+  2. GDBT（梯度提升樹）嵌入法
 
+     * 特徵重要性
+
+     |                    | Xgboost對應參數<br />（importance_type） | 計算時間 | 估計精確性 | sklearn是否有此功能 |
+   | ------------------ | ---------------------------------------- | -------- | ---------- | ------------------- |
+     | 分支次數           | weight                                   | 最快     | 最低       | 有                  |
+     | 特徵（分支）覆蓋度 | cover                                    | 快       | 中         | 無                  |
+     | 損失函數降低量     | gain                                     | 較慢     | 最高       | 無                  |
   
-
+     ※ sklearn當中的樹狀模型，都有特徵重要性這項方法(.feature_importances_)，而實際上都是`分支次數`
   
-
+     * 排列重要性（[permutation Importance](<https://www.kaggle.com/dansbecker/permutation-importance?utm_medium=email&utm_source=mailchimp&utm_campaign=ml4insights>)）
   
-    
+       打散單一特徵的資料排序順序，再用原本模型重新預測，觀察打散前後誤差會變化多少
+  
+     |              | 特徵重要性<br />（Feature Impotance） | 排序重要性<br />（Permutation Importance） |
+     | ------------ | ------------------------------------- | ------------------------------------------ |
+     | 適用模型     | 限定樹狀模型                          | 機器學習模型均可                           |
+     | 計算原理     | 樹狀模型的分歧特徵                    | 打散原始資料中單一特徵的排序               |
+     | 額外計算時間 | 較短                                  | 較長                                       |
+  
+     
+  
+     
+       
+  
+  
+  
+  
+  
+  
+  
