@@ -20,4 +20,42 @@
 
 完全不會特徵工程，花了更多時間在閱讀相關資料。
 
-[Note](https://github.com/j0987834204/2nd-ML100Days/blob/master/PartII_note.md)
+寫太多開另一個Markdown：[Note](https://github.com/j0987834204/2nd-ML100Days/blob/master/PartII_note.md)
+
+#### [Part III] 資料科學特徵工程技術 `Day31 to Day`
+
+[Loss Function]([https://medium.com/@chih.sheng.huang821/%E6%A9%9F%E5%99%A8-%E6%B7%B1%E5%BA%A6%E5%AD%B8%E7%BF%92-%E5%9F%BA%E7%A4%8E%E4%BB%8B%E7%B4%B9-%E6%90%8D%E5%A4%B1%E5%87%BD%E6%95%B8-loss-function-2dcac5ebb6cb](https://medium.com/@chih.sheng.huang821/機器-深度學習-基礎介紹-損失函數-loss-function-2dcac5ebb6cb))
+
+[利用學習曲線診斷模型的偏差和方差](<http://bangqu.com/yjB839.html>)
+
+* [評估指標](<https://zhuanlan.zhihu.com/p/30721429>)
+
+  回歸：
+
+  1. MSE（Mean Square Error）
+  2. MAE（Mean Absolute Error）
+  3. $R^2$（R-square）
+  4. MAPE（Mean Absolute Percentage Error）
+
+  分類：
+
+  1. [AUC](<https://www.dataschool.io/roc-curves-and-auc-explained/>)（Area Under Curve）：線越左上越好；機率值
+
+  2. F1-Score（Precision, Recall）：希望某類不要分錯；分類結果
+
+     True Positive, False Positive, True Negative, False Negative
+
+     T / F：模型預測對錯, P / N：模型預測結果
+
+     Precision：模型判定瑕疵，樣本確實為瑕疵的比例
+
+     Recall：模型判定的瑕疵，佔樣本所有瑕疵的比例（以瑕疵檢測為例，若為 recall=1 則代表所有瑕疵都被找到）
+     $$
+     F_{\beta} = (1+\beta^2)*\frac{precision*recall}{(\beta^2+precision)+recall}
+     $$
+     
+
+     ![img](https://upload.wikimedia.org/wikipedia/commons/thumb/2/26/Precisionrecall.svg/350px-Precisionrecall.svg.png)
+
+  3. 混淆矩陣（Confusion Matrix）
+  4. top-k accuracy：用於多分類問題
