@@ -19,3 +19,5 @@
 #### [Part II] 資料科學特徵工程技術 `Day17 to Day30`
 
 完全不會特徵工程，花了更多時間在閱讀相關資料。
+
+[Note](https://github.com/j0987834204/2nd-ML100Days/blob/master/PartII_note.md)
