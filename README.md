@@ -59,3 +59,19 @@
 
   3. 混淆矩陣（Confusion Matrix）
   4. top-k accuracy：用於多分類問題
+
+* 訓練樣本及測試樣本
+
+  Bias vs Variance
+
+  －Bias大，重新建模，因為未包含目標（加變數或升次方）
+
+  －Variance大，增加資料筆數或正規化（Regularization）
+
+  ![img](https://liam.page/uploads/images/MachineLearning/bias-and-variance.png)
+
+  ![åå·®ä¸è¯¯å·®çååè¶å¿](https://liam.page/uploads/images/MachineLearning/bias-variance-tend.png)
+
+![img](https://3.bp.blogspot.com/-C4yhR_uU7b0/WcKIuMcuklI/AAAAAAAAALA/66ieZ7P3escwupEQv4giKZEEFlJlrKSdgCK4BGAYYCw/s640/%25E6%258A%2595%25E5%25BD%25B1%25E7%2589%258720.JPG)
+
+​		先將訓練資料集分成訓練資料及交叉驗證資料，選出損失函數較低的模型，再用完整訓練資料集重新訓練模型，再使用測試資料集評估模型效益。
